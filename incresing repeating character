@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int compare(const void *a, const void *b)
+{
+    return (*(char *)a - *(char *)b);
+}
+void sort_and_find_repeats(char *s)
+{
+    int n = strlen(s);
+    qsort(s, n, sizeof(char), compare);
+    printf("Output: %s, starting index", s);
+    for (int i = 0; i < n; i++) {
+        if (s[i] == s[i + 1]) {
+            printf(" %d", i);
+            while (i < n - 1 && s[i] == s[i + 1]) {
+                i++;
+            }
+        }
+    }
+    printf("\n");
+}
+int main()
+{
+    char s1[] = "tree";
+    printf("Input: %s\n", s1);
+    sort_and_find_repeats(s1);
+
+    char s2[] = "kkj";
+    printf("Input: %s\n", s2);
+    sort_and_find_repeats(s2);
+
+    char s3[] = "cccaaa";
+    printf("Input: %s\n", s3);
+    sort_and_find_repeats(s3);
+
+    char s4[] = "Aabb";
+    printf("Input: %s\n", s4);
+    sort_and_find_repeats(s4);
+    return 0;
+}
