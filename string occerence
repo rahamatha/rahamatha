@@ -1,0 +1,26 @@
+#include <stdio.h>
+int strStr(char *haystack, char *needle)
+{
+    if (needle[0] == '\0') return 0;
+    int i, j;
+    for (i = 0; haystack[i] != '\0'; i++)
+{
+        for (j = 0; needle[j] != '\0' && haystack[i + j] != '\0' && haystack[i + j] == needle[j]; j++) 
+{
+        }
+        if (needle[j] == '\0') return i; // If we reached the end of needle, we found a match, return index i
+    }
+
+    return -1; // If needle is not found in haystack, return -1
+}
+
+int main() 
+{
+    char haystack1[] = "sadbutsad";
+    char needle1[] = "sad";
+    printf("Output for haystack = \"%s\", needle = \"%s\": %d\n", haystack1, needle1, strStr(haystack1, needle1)); // Output: 0
+    char haystack2[] = "leetcode";
+    char needle2[] = "leeto";
+    printf("Output for haystack = \"%s\", needle = \"%s\": %d\n", haystack2, needle2, strStr(haystack2, needle2)); // Output: -1
+    return 0;
+}
