@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+int segregate(int arr[], int size)
+{
+    int j = 0;
+    for (int i = 0; i < size; i++)
+{
+        if (arr[i] <= 0) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            j++;
+        }
+    }
+    return j;
+}
+int find_missing_positive(int arr[], int size) 
+{
+    for (int i = 0; i < size; i++) {
+        if (abs(arr[i]) - 1 < size && arr[abs(arr[i]) - 1] > 0)
+{
+            arr[abs(arr[i]) - 1] = -arr[abs(arr[i]) - 1];
+        }
+    }
+    for (int i = 0; i < size; i++)
+{
+        if (arr[i] > 0) {
+            return i + 1;
+        }
+    }
+    return size + 1;
+}
+int find_smallest_positive_missing(int arr[], int size) {
+    int shift = segregate(arr, size);
+    return find_missing_positive(arr + shift, size - shift);
+}
+int main()
+{
+    int arr1[] = {2, 3, 7, 6, 8, -1, -10, 15};
+    int arr2[] = {2, 3, -7, 6, 8, 1, -10, 15};
+    int arr3[] = {1, 1, 0, -1, -2};
+    printf("Output for arr1: %d\n", find_smallest_positive_missing(arr1, sizeof(arr1) / sizeof(arr1[0])));
+    printf("Output for arr2: %d\n", find_smallest_positive_missing(arr2, sizeof(arr2) / sizeof(arr2[0])));
+    printf("Output for arr3: %d\n", find_smallest_positive_missing(arr3, sizeof(arr3) / sizeof(arr3[0])));
+    return 0;
+}
