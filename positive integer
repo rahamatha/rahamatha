@@ -1,0 +1,18 @@
+#include <stdio.h>
+unsigned long long factorial(int N)
+{
+    unsigned long long result = 1;
+    for (int i = 1; i <= N; i++)
+    {
+        result *= i;
+    }
+    return result;
+}
+int main() 
+{
+    int N1 = 2;
+    printf("Output for N = %d: %llu\n", N1, factorial(N1)); // Output: 2
+    int N2 = 4;
+    printf("Output for N = %d: %llu\n", N2, factorial(N2)); // Output: 24
+    return 0;
+}
